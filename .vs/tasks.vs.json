@@ -1,0 +1,15 @@
+{
+  "version": "0.2.1",
+  "tasks": [
+    {
+      "taskName": "task-routing-start",
+      "appliesTo": "/",
+      "type": "launch"
+    },
+    {
+      "taskName": "task-routing-start",
+      "appliesTo": "/",
+      "type": "launch"
+    }
+  ]
+}
