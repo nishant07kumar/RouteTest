@@ -15,6 +15,8 @@ import { PageNoteFoundComponent } from './page-note-found/page-note-found.compon
 import { AppRoutingModule } from './approuting.module';
 import { AuthenticationService } from './auth.service';
 import { AuthGaurd } from './authgaurd.service';
+import { CanDeActivateGaurd } from './servers/edit-server/canDeactivateGaurd.service';
+import { ErrorComponentComponent } from './error-component/error-component.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +27,8 @@ import { AuthGaurd } from './authgaurd.service';
     UserComponent,
     EditServerComponent,
     ServerComponent,
-    PageNoteFoundComponent
+    PageNoteFoundComponent,
+    ErrorComponentComponent
   ],
   imports: [
     BrowserModule,
@@ -33,7 +36,7 @@ import { AuthGaurd } from './authgaurd.service';
     HttpModule,
     AppRoutingModule
   ],
-  providers: [ServersService, AuthenticationService, AuthGaurd],
+  providers: [ServersService, AuthenticationService, AuthGaurd, CanDeActivateGaurd],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

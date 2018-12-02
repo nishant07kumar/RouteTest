@@ -1,4 +1,4 @@
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             import { NgModule } from "@angular/core";
+import { NgModule } from "@angular/core";
 import { Routes, RouterModule } from "@angular/router";
 import { HomeComponent } from "./home/home.component";
 import { ServersComponent } from "./servers/servers.component";
@@ -8,13 +8,16 @@ import { UsersComponent } from "./users/users.component";
 import { PageNoteFoundComponent } from "./page-note-found/page-note-found.component";
 import { UserComponent } from "./users/user/user.component";
 import { AuthGaurd } from "./authgaurd.service";
+import { CanDeActivateGaurd } from "./servers/edit-server/canDeactivateGaurd.service";
+import { ErrorComponentComponent } from "./error-component/error-component.component";
 
 
-const appRoutes : Routes = [
+
+const appRoutes: Routes = [
   { path: '', component: HomeComponent },
   {
     path: 'servers', canActivateChild: [AuthGaurd], component: ServersComponent, children: [
-      { path: ':id/edit', component: EditServerComponent },
+      { path: ':id/edit', component: EditServerComponent, canDeactivate: [CanDeActivateGaurd] },
       { path: ':id', component: ServerComponent },]
   },
   {
@@ -22,15 +25,16 @@ const appRoutes : Routes = [
       { path: ':id/:name', component: UserComponent },
     ]
   },
-  { path: "notFound", component: PageNoteFoundComponent },
-  { path: "redirectToTest", redirectTo: '/notFound' },
+  //{ path: "notFound", component: PageNoteFoundComponent },
+  //{ path: "redirectToTest", redirectTo: '/notFound' },
+  { path: "notFound", component: ErrorComponentComponent, data: { messageText: 'Page Doest not exist.' } },
   { path: "**", redirectTo: '/notFound' }
-]; 
+];
 
 @NgModule({
   imports: [RouterModule.forRoot(appRoutes)],
   exports: [RouterModule],
 })
-export class AppRoutingModule{
+export class AppRoutingModule {
 
 }
